@@ -1,10 +1,35 @@
 services:
-  willinn-unknown-api:
+  willinn-techicalTest-api:
     build:
       context: .
       dockerfile: Api/Dockerfile-test
     container_name: willinn-unknown-api
     environment:
-      "ASPNETCORE_URLS": "http://+:5001"
+      - ASPNETCORE_URLS=http://+:5001
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=sql-database-technicalTest;User=sa;Password=sqlpass*1234;
     ports:
       - "5001:5001"
+    depends_on:
+      - sql-database-technicalTest
+    networks:
+      - api_tech_network
+
+
+  sql-database-technicalTest:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sql-database-technicalTest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=sqlpass*1234
+    ports:
+      - "1433:1433"
+    volumes:
+      - sql_data:/var/opt/sql-database-technicalTest
+    networks:
+      - api_tech_network
+        
+volumes:
+  sql_data:
+    
+networks:
+  api_tech_network:
