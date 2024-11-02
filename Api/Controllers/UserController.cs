@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Api.Controllers;
 
 [ApiController]
-/*[Route("[controller]/v1")]*/
+/*[Route("api/[controller]")]*/
 public class UserController(IUserService userService) : ControllerBase
 {
     /*public Task<User> Login(string email, string password)
