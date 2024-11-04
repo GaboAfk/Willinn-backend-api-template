@@ -1,18 +1,15 @@
 ﻿using Core;
 using Core.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers;
 
 [ApiController]
+[Authorize]
 /*[Route("api/[controller]")]*/
 public class UserController(IUserService userService) : ControllerBase
 {
-    /*public Task<User> Login(string email, string password)
-    {
-        throw new NotImplementedException();
-    }*/
-    
     [HttpPost ("users")]
     public async Task<ActionResult<User>> AddUser(string name, string email, string password)
     {
