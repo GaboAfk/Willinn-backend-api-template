@@ -1,4 +1,4 @@
-
+<a id="readme-top"></a>
 # Willinn Backend API Template - Prueba Técnica
 
 Este proyecto es una API de backend para la prueba técnica para Trainee de Willinn, la misma está desarrollada con .NET 8 y C# 12.0, diseñada para la gestión de usuarios y autenticación. Se incluyen funcionalidades de registro, inicio de sesión y operaciones CRUD sobre usuarios.
@@ -25,6 +25,7 @@ Este proyecto es una API de backend para la prueba técnica para Trainee de Will
 - **Docker y Docker Compose**: [Descargar e instalar](https://www.docker.com/).
 - **.NET SDK**: [Descargar e instalar](https://dotnet.microsoft.com/es-es/download).
 - **IDE recomendado**: Se recomienda **Rider** para un desarrollo más eficiente. [Más información](https://www.jetbrains.com/es-es/rider/).
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Instalación y Configuración
 
@@ -46,6 +47,7 @@ Este proyecto es una API de backend para la prueba técnica para Trainee de Will
        "DefaultConnection": "Server=localhost,1433;Database=UserDb;User=sa;Password=sqlpass*1234;TrustServerCertificate=true;"
     }
     ```
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Ejecución de la Aplicación
 
@@ -70,6 +72,7 @@ Este proyecto es una API de backend para la prueba técnica para Trainee de Will
     ```bash
     dotnet run --project Api\Api.csproj
     ```
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Uso de Swagger
 
@@ -77,6 +80,7 @@ Puedes acceder a la documentación de Swagger para probar los endpoints:
 
 - **Local**: [http://localhost:5000/swagger/index.html](http://localhost:5000/swagger/index.html)
 - **Contenedor**: [http://localhost:5001/swagger/index.html](http://localhost:5001/swagger/index.html)
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Documentación de Endpoints
 
@@ -228,6 +232,7 @@ Marca un usuario como inactivo por ID.
       "isActive": false
     }
     ```
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Descripción de los Controladores
 
@@ -247,3 +252,4 @@ Gestiona las operaciones CRUD sobre los usuarios. Contiene métodos como:
 - `GET /users/{id}`: Obtiene un usuario específico por ID.
 - `PUT /users/{id}`: Actualiza un usuario existente.
 - `DELETE /users/{id}`: Marca un usuario como inactivo por ID.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
