@@ -4,24 +4,17 @@ using Data;
 
 namespace Services
 {
-    public class UserService(AppDbContext context) : IUserService
+    public class UserService(AppDbContext context, IJwtService jwtService) : IUserService
     {
-        /*public Task<User> Login(string email, string password)
-        {
-            throw new NotImplementedException();
-        }*/
-
         public async Task<User> AddUser(string name, string email, string password)
         {
             var newUser = new User
             {
                 Name = name,
                 Email = email,
-                Password = password,
+                Password = jwtService.EncrypterSha256(password),
             };
-            
             await context.SaveUserDB(newUser);
-            
             return newUser;
         }
 
