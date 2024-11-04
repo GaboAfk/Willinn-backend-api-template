@@ -122,6 +122,8 @@ Inicia sesión con las credenciales del usuario.
 
 ### Endpoints CRUD de Usuarios
 
+**Nota**: Es necesario autenticarse con un token JWT válido para poder utilizar los siguientes endpoints CRUD de usuarios. Asegúrate de incluir el token en el encabezado de autorización de tus solicitudes.
+
 #### `POST /users`
 
 Crea un nuevo usuario.
