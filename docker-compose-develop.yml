@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Api/Dockerfile-test
-    container_name: willinn-unknown-api
+    container_name: willinn-unknown-api-technical-test
     environment:
       - ASPNETCORE_URLS=http://+:5001
       - ConnectionStrings__DefaultConnection=Server=host.docker.internal;Database=UserDb;User=sa;Password=sqlpass*1234;TrustServerCertificate=true;
