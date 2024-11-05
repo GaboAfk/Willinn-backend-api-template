@@ -24,7 +24,6 @@ namespace Data
             var user = await Users.FindAsync(id);
             return user;
         }
-        
         public async Task<User> GetUserDBByEmail(string email)
         {
             var user = await Users.Where(u => u.Email == email).FirstOrDefaultAsync();
