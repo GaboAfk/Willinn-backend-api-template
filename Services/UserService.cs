@@ -25,7 +25,12 @@ namespace Services
 
         public async Task<User> GetUserById(int id)
         {
-            return await context.GetUserDB(id);
+            return await context.GetUserDBById(id);
+        }
+        
+        public async Task<User> GetUserByEmail(string email)
+        {
+            return await context.GetUserDBByEmail(email);
         }
 
         public async Task<User> UpdateUser(User user)
@@ -37,7 +42,7 @@ namespace Services
 
         public async Task<User> DeleteUser(int id)
         {
-            var userToDelete = await context.GetUserDB(id);
+            var userToDelete = await context.GetUserDBById(id);
             userToDelete.IsActive = false;
 
             await context.UpdateUserDB(userToDelete);

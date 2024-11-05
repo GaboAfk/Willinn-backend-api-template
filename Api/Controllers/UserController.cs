@@ -35,7 +35,7 @@ public class UserController(IUserService userService) : ControllerBase
         return BadRequest();
     }
     
-    [HttpGet ("users/{id}")]
+    [HttpGet ("users/{id:int}")]
     public async Task<ActionResult<User>> GetUserById(int id)
     {
         var response = await userService.GetUserById(id);
@@ -46,7 +46,18 @@ public class UserController(IUserService userService) : ControllerBase
         return BadRequest();
     }
     
-    [HttpPut ("users/{id}")]
+    [HttpGet ("users/{email}")]
+    public async Task<ActionResult<User>> GetUserByEmail(string email)
+    {
+        var response = await userService.GetUserByEmail(email);
+        
+        if (response != null)
+            return Ok(response);
+        
+        return BadRequest();
+    }
+    
+    [HttpPut ("users/{id:int}")]
     public async Task<ActionResult<User>> UpdateUser(User user)
     {
         var response = await userService.UpdateUser(user);
@@ -57,7 +68,7 @@ public class UserController(IUserService userService) : ControllerBase
         return BadRequest();
     }
 
-    [HttpDelete ("users/{id}")]
+    [HttpDelete ("users/{id:int}")]
     public async Task<ActionResult<User>> DeleteUser(int id)
     {
         var response = await userService.DeleteUser(id);

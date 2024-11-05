@@ -16,9 +16,12 @@ public class AccessController(AppDbContext context, IJwtService jwtService, IUse
     [HttpPost("registerUser")]
     public async Task<IActionResult> Register(UserDTO userDto)
     {
-        var newUser = await userService.AddUser(userDto.Name, userDto.Email, userDto.Password);
+        var newUser = new User();
+        var userDB = await userService.GetUserByEmail(userDto.Email);
         
-        /*return StatusCode(StatusCodes.Status200OK, newUser.ID != 0 ? new {isSuccess = true} : new {isSuccess = false});*/
+        if (userDB == null)
+            newUser = await userService.AddUser(userDto.Name, userDto.Email, userDto.Password);
+        
         return Ok(new { isSuccess = newUser.ID != 0 });
     }
 
