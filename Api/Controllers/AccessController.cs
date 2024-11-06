@@ -20,7 +20,7 @@ public class AccessController(AppDbContext context, IJwtService jwtService, IUse
         var userDB = await userService.GetUserByEmail(userDto.Email);
         
         if (userDB == null)
-            newUser = await userService.AddUser(userDto.Name, userDto.Email, userDto.Password);
+            newUser = await userService.AddUser(userDto.Name, userDto.Email, userDto.Password, userDto.IsActive);
         
         return Ok(new { isSuccess = newUser.ID != 0 });
     }
@@ -32,7 +32,20 @@ public class AccessController(AppDbContext context, IJwtService jwtService, IUse
             .Where(u => u.Email == loginDto.Email && u.Password == jwtService.EncrypterSha256(loginDto.Password))
             .FirstOrDefaultAsync();
 
-        /*return userFound == null ? StatusCode(StatusCodes.Status200OK, new {isSuccess = false}) : StatusCode(StatusCodes.Status200OK, new {isSuccess = true, token = jwtService.GeneratorJWT(userFound)});*/
         return userFound == null ? Ok(new { isSuccess = false }) : Ok(new { isSuccess = true, token = jwtService.GeneratorJWT(userFound) });
+    }
+    
+    [HttpPut ("recoverPassword")]
+    public async Task<IActionResult> RecoverPass(RecoveryUserDTO recoveryUserDto)
+    {
+        var userToUpdate = await userService.GetUserByEmail(recoveryUserDto.Email);
+        if (userToUpdate == null)
+        {
+            return BadRequest();
+        }
+
+        userToUpdate.Password = jwtService.EncrypterSha256(recoveryUserDto.Password);
+        var newUser  = await userService.UpdateUser (userToUpdate);
+        return Ok(new { isSuccess = newUser .ID != 0 });
     }
 }
