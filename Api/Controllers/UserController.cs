@@ -11,12 +11,12 @@ namespace Api.Controllers;
 public class UserController(IUserService userService) : ControllerBase
 {
     [HttpPost ("users")]
-    public async Task<ActionResult<User>> AddUser(string name, string email, string password)
+    public async Task<ActionResult<User>> AddUser([FromBody] UserDTO user)
     {
-        if (name == null || email == null || password == null)
+        if (user.Name == null || user.Email == null || user.Password == null)
             return BadRequest();
         
-        var response = await userService.AddUser (name, email, password);
+        var response = await userService.AddUser (user.Name, user.Email, user.Password, user.IsActive);
         
         if (response != null)
             return Ok(response);
@@ -57,15 +57,17 @@ public class UserController(IUserService userService) : ControllerBase
         return BadRequest();
     }
     
-    [HttpPut ("users/{id:int}")]
-    public async Task<ActionResult<User>> UpdateUser(User user)
+    [HttpPut("users/{id}")]
+    public async Task<ActionResult<User>> UpdateUser (User user)
     {
-        var response = await userService.UpdateUser(user);
-        
-        if (response != null)
+        try {
+            var response = await userService.UpdateUser(user);
             return Ok(response);
-        
-        return BadRequest();
+        } catch (KeyNotFoundException ex) {
+            return NotFound(ex.Message);
+        } catch (Exception ex) {
+            return BadRequest(ex.Message);
+        }
     }
 
     [HttpDelete ("users/{id:int}")]
