@@ -1,7 +1,7 @@
 <a id="readme-top"></a>
-# Willinn Backend API Template - Prueba Técnica
+# Willinn Backend API Template - Prueba Técnica Willinn
 
-Este proyecto es una API de backend para la prueba técnica para Trainee de Willinn, la misma está desarrollada con .NET 8 y C# 12.0, diseñada para la gestión de usuarios y autenticación. Se incluyen funcionalidades de registro, inicio de sesión y operaciones CRUD sobre usuarios.
+Willinn Backend API Template es una API RESTful para la prueba técnica en Trainee de Willinn, está desarrollada con .NET 8 donde se proporciona servicios para la gestión de usuarios. Se implementó autenticación JWT, operaciones CRUD de usuarios y una arquitectura utilizando Entity Framework Core.
 
 ## Tabla de Contenidos
 
@@ -9,21 +9,41 @@ Este proyecto es una API de backend para la prueba técnica para Trainee de Will
 - [Requisitos Previos](#requisitos-previos)
 - [Instalación y Configuración](#instalación-y-configuración)
 - [Ejecución de la Aplicación](#ejecución-de-la-aplicación)
+- [Estructura del Proyecto](#estructura-del-proyecto)
 - [Uso de Swagger](#uso-de-swagger)
 - [Documentación de Endpoints](#documentación-de-endpoints)
+    - [Endpoints de Autenticación](#endpoints-de-autenticación)
+    - [Endpoints CRUD de Usuarios](#endpoints-crud-de-usuarios)
 - [Descripción de los Controladores](#descripción-de-los-controladores)
+    - [AccessController](#accesscontroller)
+    - [UserController](#usercontroller)
+- [Autenticación](#autenticación)
+- [Gestión de Usuarios](#gestión-de-usuarios)
+- [Seguridad](#seguridad)
+- [Autor](#autor)
+
+## Características Principales
+- 🔐 Sistema de autenticación JWT completo
+- 👥 Gestión de usuarios (CRUD)
+- 🏗️ Arquitectura modular
+- 🔍 Documentación Swagger
+- 🐳 Containerización con Docker
+- 🔄 Migraciones automáticas
 
 ## Tecnologías Utilizadas
-
 - .NET 8
 - C# 12.0
+- Entity Framework Core
 - SQL Server
-- Docker y Docker Compose
+- Docker & Docker Compose
+- Swagger/OpenAPI
+- JWT Authentication
 
 ## Requisitos Previos
 
-- **Docker y Docker Compose**: [Descargar e instalar](https://www.docker.com/).
 - **.NET SDK**: [Descargar e instalar](https://dotnet.microsoft.com/es-es/download).
+- **Docker y Docker Compose**: [Descargar e instalar](https://www.docker.com/).
+- **SQL Server** (local o containerizado)
 - **IDE recomendado**: Se recomienda **Rider** para un desarrollo más eficiente. [Más información](https://www.jetbrains.com/es-es/rider/).
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -51,7 +71,7 @@ Este proyecto es una API de backend para la prueba técnica para Trainee de Will
 
 ## Ejecución de la Aplicación
 
-### Uso de Contenedores Docker
+### 🐳 Uso de Contenedores Docker
 
 1. Asegúrate de que Docker esté ejecutándose y ejecuta el siguiente comando:
     ```bash
@@ -72,6 +92,28 @@ Este proyecto es una API de backend para la prueba técnica para Trainee de Will
     ```bash
     dotnet run --project Api\Api.csproj
     ```
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Estructura del Proyecto
+
+```plaintext
+├── Api/
+│   ├── Controllers/
+│   ├── Extensions/
+│   ├── Properties/
+│   └── Program.cs
+├── Core/
+│   ├── Models/
+│   └── Services/
+├── Data/
+│   ├── Migrations/
+│   └── AppDbContext.cs
+├── Services/
+│   ├── UserService.cs
+│   └── JwtService.cs
+└── Tests/
+    └── UnitTests/
+```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Uso de Swagger
@@ -252,4 +294,26 @@ Gestiona las operaciones CRUD sobre los usuarios. Contiene métodos como:
 - `GET /users/{id}`: Obtiene un usuario específico por ID.
 - `PUT /users/{id}`: Actualiza un usuario existente.
 - `DELETE /users/{id}`: Marca un usuario como inactivo por ID.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Autenticación
+- Registro de usuarios
+- Login con JWT
+- Recuperación de contraseña
+- Encriptación SHA256 para contraseñas
+## Gestión de Usuarios
+- Listado de usuarios
+- Creación de usuarios
+- Actualización de datos
+- Eliminación lógica
+- Búsqueda por ID y email
+## Seguridad
+- Autenticación JWT
+- Protección de endpoints
+- Validación de datos
+- CORS configurado
+- Manejo seguro de contraseñas
+
+## Autor
+Gabriel - [GaboAfk](https://github.com/GaboAfk)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
