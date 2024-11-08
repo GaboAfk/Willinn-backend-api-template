@@ -45,7 +45,7 @@ namespace Services
             updatedUser.Name = user.Name;
             updatedUser.Email = user.Email;
             updatedUser.Password = jwtService.EncrypterSha256(user.Password);
-            
+
             await context.UpdateUserDB(updatedUser);
             return updatedUser;
         }

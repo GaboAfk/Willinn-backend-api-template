@@ -45,7 +45,7 @@ public class AccessController(AppDbContext context, IJwtService jwtService, IUse
         }
 
         userToUpdate.Password = jwtService.EncrypterSha256(recoveryUserDto.Password);
-        var newUser  = await userService.UpdateUser (userToUpdate);
-        return Ok(new { isSuccess = newUser .ID != 0 });
+        await context.UpdateUserDB(userToUpdate);
+        return Ok(new { isSuccess = userToUpdate .ID != 0 });
     }
 }
